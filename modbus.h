@@ -2,8 +2,7 @@
 // Created by Fanzhe on 5/28/2017.
 //
 
-#ifndef MODBUSPP_MODBUS_H
-#define MODBUSPP_MODBUS_H
+#pragma once
 
 #include <cstring>
 #include <iostream>
@@ -13,33 +12,32 @@
 #include <unistd.h>
 
 
-#define MAX_MSG_LENGTH 260
+constexpr size_t MAX_MSG_LENGTH = 260;
 
-///Function Code
-#define     READ_COILS        0x01
-#define     READ_INPUT_BITS   0x02
-#define     READ_REGS         0x03
-#define     READ_INPUT_REGS   0x04
-#define     WRITE_COIL        0x05
-#define     WRITE_REG         0x06
-#define     WRITE_COILS       0x0F
-#define     WRITE_REGS        0x10
+constexpr int READ_COILS        = 0x01;
+constexpr int READ_INPUT_BITS   = 0x02;
+constexpr int READ_REGS         = 0x03;
+constexpr int READ_INPUT_REGS   = 0x04;
+constexpr int WRITE_COIL        = 0x05;
+constexpr int WRITE_REG         = 0x06;
+constexpr int WRITE_COILS       = 0x0F;
+constexpr int WRITE_REGS        = 0x10;
 
 ///Exception Codes
 
-#define    EX_ILLEGAL_FUNCTION  0x01 // Function Code not Supported
-#define    EX_ILLEGAL_ADDRESS   0x02 // Output Address not exists
-#define    EX_ILLEGAL_VALUE     0x03 // Output Value not in Range
-#define    EX_SERVER_FAILURE    0x04 // Slave Deive Fails to process request
-#define    EX_ACKNOWLEDGE       0x05 // Service Need Long Time to Execute
-#define    EX_SERVER_BUSY       0x06 // Server Was Unable to Accept MB Request PDU
-#define    EX_NEGATIVE_ACK      0x07
-#define    EX_MEM_PARITY_PROB   0x08
-#define    EX_GATEWAY_PROBLEMP  0x0A // Gateway Path not Available
-#define    EX_GATEWYA_PROBLEMF  0x0B // Target Device Failed to Response
-#define    EX_BAD_DATA          0XFF // Bad Data lenght or Address
+constexpr int    EX_ILLEGAL_FUNCTION  = 0x01 // Function Code not Supported
+constexpr int    EX_ILLEGAL_ADDRESS   = 0x02 // Output Address not exists
+constexpr int    EX_ILLEGAL_VALUE     = 0x03 // Output Value not in Range
+constexpr int    EX_SERVER_FAILURE    = 0x04 // Slave Deive Fails to process request
+constexpr int    EX_ACKNOWLEDGE       = 0x05 // Service Need Long Time to Execute
+constexpr int    EX_SERVER_BUSY       = 0x06 // Server Was Unable to Accept MB Request PDU
+constexpr int    EX_NEGATIVE_ACK      = 0x07
+constexpr int    EX_MEM_PARITY_PROB   = 0x08
+constexpr int    EX_GATEWAY_PROBLEMP  = 0x0A // Gateway Path not Available
+constexpr int    EX_GATEWYA_PROBLEMF  = 0x0B // Target Device Failed to Response
+constexpr int    EX_BAD_DATA          = 0XFF // Bad Data lenght or Address
 
-#define    BAD_CON              -1
+constexpr int    BAD_CON              = -1
 
 /// Modbus Operator Class
 /**
@@ -581,4 +579,3 @@ void modbus::modbuserror_handle(const uint8_t *msg, int func) {
     error_msg = "NO ERR";
 }
 
-#endif //MODBUSPP_MODBUS_H
